@@ -12,8 +12,7 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI = 'mongodb+srv://adminNelson:Mi201992@cluster0-lzst1.mongodb.net/shop?retryWrites=true&w=majority';
-//   'mongodb+srv://maximilian:9u4biljMQc4jjqbe@cluster0-ntrwp.mongodb.net/shop';
+const MONGODB_URI = 'mongodb+srv://adminNelson:<PASSWORD>@cluster0-lzst1.mongodb.net/shop?retryWrites=true&w=majority';
 
 const app = express();
 const store = new MongoDBStore({
@@ -99,9 +98,7 @@ app.get('/500', errorController.get500);
 
 app.use(errorController.get404);
 
-app.use((error, req, res, next) => {
-  // res.status(error.httpStatusCode).render(...);
-  // res.redirect('/500');
+app.use((error, req, res, next) => {  
   res.status(500).render('500', {
     pageTitle: 'Error!',
     path: '/500',
